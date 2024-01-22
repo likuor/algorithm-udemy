@@ -1,3 +1,4 @@
+// FIXME
 let obj = {
   num: 1,
   test: [],
@@ -10,17 +11,19 @@ let obj = {
   },
 };
 
-const stringifyNumbers = (obj) => {
-  for (let key in obj) {
+function stringifyNumbers(obj) {
+  var newObj = {};
+  for (var key in obj) {
     if (typeof obj[key] === 'number') {
-      obj[key] = obj[key].toString();
+      newObj[key] = obj[key].toString();
     } else if (typeof obj[key] === 'object' && !Array.isArray(obj[key])) {
-      stringifyNumbers(obj[key]);
+      newObj[key] = stringifyNumbers(obj[key]);
+    } else {
+      newObj[key] = obj[key];
     }
   }
-  return obj;
-};
-
+  return newObj;
+}
 console.log(stringifyNumbers(obj));
 
 // {

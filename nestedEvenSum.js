@@ -22,38 +22,15 @@ var obj2 = {
   e: { e: { e: 2 }, ee: 'car' },
 };
 
-let res = 0;
-function nestedEvenSum(obj) {
-  // console.log(obj);
-  const arr = Object.values(obj);
-  console.log(arr);
-  for (let i = 0; i < arr.length; i++) {
-    if (typeof arr[i] === 'number') {
-      res += arr[i];
-    } else {
-      nestedEvenSum(arr[i]);
+function nestedEvenSum(obj, sum = 0) {
+  for (var key in obj) {
+    if (typeof obj[key] === 'object') {
+      sum += nestedEvenSum(obj[key]);
+    } else if (typeof obj[key] === 'number' && obj[key] % 2 === 0) {
+      sum += obj[key];
     }
-    // console.log('---------', arr[i]);
-    // const tes = Object.values(arr[i]);
-    // console.log('---------here', tes);
-    //   if (Array.isArray(oldArr[i])) {
-
-    // }
-
-    // if (arr[i]) {
-    //   console.log('-------', tes);
-    // }
-    // if (typeof arr[i] !== 'number') {
-    //   console.log('---------------', arr[i]);
-    //   nestedEvenSum(arr[i]);
-    // } else {
-    //   res += arr[i];
-    // }
-    // console.log(arr[i]);
   }
-  console.log('========', res);
-
-  return res;
+  return sum;
 }
 
 console.log(nestedEvenSum(obj1)); // 6
