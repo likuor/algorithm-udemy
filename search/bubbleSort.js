@@ -1,5 +1,5 @@
 // TODO was naive solution
-// Time O(n^2)
+// Time best O(n), worst O(n^2)
 const swap = (arr, index1, index2) => {
   let temp = arr[index1];
   arr[index1] = arr[index2];
