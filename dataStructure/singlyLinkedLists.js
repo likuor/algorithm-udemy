@@ -76,6 +76,15 @@ class SinglyLinkedLists {
     }
     return current;
   }
+
+  set(index, val) {
+    let current = this.get(index);
+    if (current) {
+      current.val = val;
+      return true;
+    }
+    return false;
+  }
 }
 
 let list = new SinglyLinkedLists();
@@ -86,7 +95,7 @@ list.push('You');
 // console.log(list.shift());
 // console.log(list.shift());
 // console.log(list.shift());
-console.log('============', list.get(0));
+console.log('============', list.set(3, 'Hello world'));
 // console.log(list.shift());
 // console.log(list.shift());
 // console.log(list.pop());
