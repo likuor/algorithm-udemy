@@ -100,6 +100,19 @@ class SinglyLinkedLists {
     this.length++;
     return true;
   }
+
+  remove(index) {
+    if (index < 0 || this.length < index) return undefined;
+    if (index === this.length - 1) return this.pop();
+    if (index === 0) return this.shift();
+
+    let prev = this.get(index - 1);
+    let temp = prev.next.next;
+
+    prev.next = temp;
+    this.length--;
+    return prev;
+  }
 }
 
 let list = new SinglyLinkedLists();
@@ -110,7 +123,7 @@ list.push('You');
 // console.log(list.shift());
 // console.log(list.shift());
 // console.log(list.shift());
-console.log('============', list.insert(1, 'Hello world'));
+console.log('============', list.remove(0));
 console.log('============', list);
 
 // console.log(list.shift());
