@@ -113,18 +113,34 @@ class SinglyLinkedLists {
     this.length--;
     return removed;
   }
+
+  // FIXME rebuild by yourself
+  reverse() {
+    let node = this.head;
+    this.head = this.tail;
+    this.tail = node;
+    let next;
+    let prev = null;
+
+    for (let i = 0; i < this.length; i++) {
+      next = node.next;
+      node.next = prev;
+      prev = node;
+      node = next;
+    }
+    return this;
+  }
 }
 
 let list = new SinglyLinkedLists();
 list.push('Hi');
 list.push('test');
 list.push('You');
-list.remove(2);
 // list.get(2);
 // console.log(list.shift());
 // console.log(list.shift());
 // console.log(list.shift());
-console.log('============', list);
+console.log('============', list.reverse());
 
 // console.log(list.shift());
 // console.log(list.shift());
