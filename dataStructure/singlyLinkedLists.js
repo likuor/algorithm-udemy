@@ -102,16 +102,16 @@ class SinglyLinkedLists {
   }
 
   remove(index) {
-    if (index < 0 || this.length < index) return undefined;
+    if (index < 0 || this.length <= index) return undefined;
     if (index === this.length - 1) return this.pop();
     if (index === 0) return this.shift();
 
     let prev = this.get(index - 1);
-    let temp = prev.next.next;
+    let removed = prev.next;
+    prev.next = removed.next;
 
-    prev.next = temp;
     this.length--;
-    return prev;
+    return removed;
   }
 }
 
@@ -119,11 +119,11 @@ let list = new SinglyLinkedLists();
 list.push('Hi');
 list.push('test');
 list.push('You');
+list.remove(2);
 // list.get(2);
 // console.log(list.shift());
 // console.log(list.shift());
 // console.log(list.shift());
-console.log('============', list.remove(0));
 console.log('============', list);
 
 // console.log(list.shift());
