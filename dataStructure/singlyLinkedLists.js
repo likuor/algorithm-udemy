@@ -65,17 +65,28 @@ class SinglyLinkedLists {
     this.length++;
     return this;
   }
+
+  get(index) {
+    if (index < 0 || this.length <= index) return null;
+    let current = this.head;
+    let count = 0;
+    while (count !== index) {
+      current = current.next;
+      count++;
+    }
+    return current;
+  }
 }
 
 let list = new SinglyLinkedLists();
 list.push('Hi');
-list.unshift('test');
-// list.push('You');
-// list.push(99);
+list.push('test');
+list.push('You');
+// list.get(2);
 // console.log(list.shift());
 // console.log(list.shift());
 // console.log(list.shift());
-console.log('============', list);
+console.log('============', list.get(0));
 // console.log(list.shift());
 // console.log(list.shift());
 // console.log(list.pop());
