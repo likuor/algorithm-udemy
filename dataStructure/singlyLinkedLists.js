@@ -85,6 +85,21 @@ class SinglyLinkedLists {
     }
     return false;
   }
+
+  insert(index, val) {
+    if (index < 0 || this.length < index) return false;
+    if (index === this.length) return !!this.push(val);
+    if (index === 0) return !!this.unshift(val);
+
+    let newNode = new Node(val);
+    let target = this.get(index - 1);
+    let temp = target.next;
+
+    target.next = newNode;
+    newNode.next = temp;
+    this.length++;
+    return true;
+  }
 }
 
 let list = new SinglyLinkedLists();
@@ -95,7 +110,9 @@ list.push('You');
 // console.log(list.shift());
 // console.log(list.shift());
 // console.log(list.shift());
-console.log('============', list.set(3, 'Hello world'));
+console.log('============', list.insert(1, 'Hello world'));
+console.log('============', list);
+
 // console.log(list.shift());
 // console.log(list.shift());
 // console.log(list.pop());
