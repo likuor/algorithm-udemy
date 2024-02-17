@@ -29,21 +29,17 @@ class DublyLinkedLists {
 
   pop() {
     if (!this.head) return undefined;
-    let current = this.head;
-    let newTail = current;
-
-    while (current.next) {
-      newTail = current;
-      current = current.next;
-    }
-    this.tail = newTail;
-    this.tail.next = null;
-    this.length--;
-    if (this.length === 0) {
+    let poppedTail = this.tail;
+    if (this.length === 1) {
       this.head = null;
       this.tail = null;
+    } else {
+      this.tail = poppedTail.prev;
+      this.tail.next = null;
+      poppedTail.prev = null;
     }
-    return current;
+    this.length--;
+    return poppedTail;
   }
 
   shift() {
@@ -140,6 +136,7 @@ let list = new DublyLinkedLists();
 list.push('Hi');
 list.push('test');
 list.push('You');
+list.pop();
 // list.get(2);
 // console.log(list.shift());
 // console.log(list.shift());
