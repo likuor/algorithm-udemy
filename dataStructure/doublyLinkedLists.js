@@ -43,22 +43,27 @@ class DublyLinkedLists {
   }
 
   shift() {
-    if (!this.head) return undefined;
-    let current = this.head;
-    this.head = current.next;
-    this.length--;
-    if (this.length === 0) {
+    if (this.length === 0) return undefined;
+    let oldHead = this.head;
+    if (this.length === 1) {
+      this.head = null;
       this.tail = null;
+    } else {
+      this.head = oldHead.next;
+      this.head.prev = null;
+      oldHead.next = null;
     }
-    return current;
+    this.length--;
+    return oldHead;
   }
 
   unshift(val) {
     let newNode = new Node(val);
-    if (!this.head) {
+    if (this.length === 0) {
       this.head = newNode;
-      this.tail = this.head;
+      this.tail = newNode;
     } else {
+      this.head.prev = newNode;
       newNode.next = this.head;
       this.head = newNode;
     }
@@ -136,7 +141,8 @@ let list = new DublyLinkedLists();
 list.push('Hi');
 list.push('test');
 list.push('You');
-list.pop();
+console.log(list.unshift('Me'));
+// list.pop();
 // list.get(2);
 // console.log(list.shift());
 // console.log(list.shift());
