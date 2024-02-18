@@ -73,11 +73,22 @@ class DublyLinkedLists {
 
   get(index) {
     if (index < 0 || this.length <= index) return null;
-    let current = this.head;
-    let count = 0;
-    while (count !== index) {
-      current = current.next;
-      count++;
+    let count, current;
+
+    if (this.length / 2 >= index) {
+      count = 0;
+      current = this.head;
+      while (count !== index) {
+        current = current.next;
+        count++;
+      }
+    } else {
+      count = this.length - 1;
+      current = this.tail;
+      while (count !== index) {
+        current = current.prev;
+        count--;
+      }
     }
     return current;
   }
@@ -141,7 +152,10 @@ let list = new DublyLinkedLists();
 list.push('Hi');
 list.push('test');
 list.push('You');
-console.log(list.unshift('Me'));
+// list.push('300');
+// list.push('400');
+// list.push('500');
+// list.push('600');
 // list.pop();
 // list.get(2);
 // console.log(list.shift());
