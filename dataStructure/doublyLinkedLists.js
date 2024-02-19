@@ -102,7 +102,7 @@ class DublyLinkedLists {
     return false;
   }
 
-  // FIXME
+  // FIXME rebuild by yourself
   insert(index, val) {
     if (index < 0 || this.length < index) return false;
     if (index === 0) return !!this.unshift(val);
@@ -121,17 +121,22 @@ class DublyLinkedLists {
     return true;
   }
 
+  // FIXME rebuild by yourself
   remove(index) {
     if (index < 0 || this.length <= index) return undefined;
     if (index === this.length - 1) return this.pop();
     if (index === 0) return this.shift();
 
-    let prev = this.get(index - 1);
-    let removed = prev.next;
-    prev.next = removed.next;
+    let removedNode = this.get(index);
+    let beforeNode = removedNode.prev;
+    let afterNode = removedNode.next;
+    beforeNode.next = afterNode;
+    afterNode.prev = beforeNode;
+    removedNode.next = null;
+    removedNode.prev = null;
 
     this.length--;
-    return removed;
+    return removedNode;
   }
 
   // FIXME rebuild by yourself
@@ -155,14 +160,14 @@ class DublyLinkedLists {
 let list = new DublyLinkedLists();
 list.push('Hi');
 list.push('test');
-// list.push('You');
+list.push('You');
 // list.push('300');
 // list.push('400');
 // list.push('500');
 // list.push('600');
 // list.pop();
 // list.get(2);
-list.insert(1, 'KOKi');
+list.remove(1);
 // console.log(list.shift());
 // console.log(list.shift());
 // console.log(list.shift());
