@@ -102,17 +102,21 @@ class DublyLinkedLists {
     return false;
   }
 
+  // FIXME
   insert(index, val) {
     if (index < 0 || this.length < index) return false;
-    if (index === this.length) return !!this.push(val);
     if (index === 0) return !!this.unshift(val);
+    if (index === this.length) return !!this.push(val);
 
     let newNode = new Node(val);
-    let target = this.get(index - 1);
-    let temp = target.next;
+    let gotNode = this.get(index - 1);
+    let temp = gotNode.next;
 
-    target.next = newNode;
+    gotNode.next = newNode;
+    newNode.prev = gotNode;
     newNode.next = temp;
+    temp.prev = newNode;
+
     this.length++;
     return true;
   }
@@ -151,13 +155,14 @@ class DublyLinkedLists {
 let list = new DublyLinkedLists();
 list.push('Hi');
 list.push('test');
-list.push('You');
+// list.push('You');
 // list.push('300');
 // list.push('400');
 // list.push('500');
 // list.push('600');
 // list.pop();
 // list.get(2);
+list.insert(1, 'KOKi');
 // console.log(list.shift());
 // console.log(list.shift());
 // console.log(list.shift());
