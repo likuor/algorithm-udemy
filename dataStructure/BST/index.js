@@ -91,9 +91,9 @@ class BinarySearchTree {
   DFSInOrder() {
     let data = [];
     const travase = (node) => {
-      if (node.left) travase(node.left);
+      node.left && travase(node.left);
       data.push(node.val);
-      if (node.right) travase(node.right);
+      node.right && travase(node.right);
     };
     travase(this.root);
     return data;
