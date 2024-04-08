@@ -87,6 +87,17 @@ class BinarySearchTree {
     travase(this.root);
     return data;
   }
+
+  DFSInOrder() {
+    let data = [];
+    const travase = (node) => {
+      if (node.left) travase(node.left);
+      data.push(node.val);
+      if (node.right) travase(node.right);
+    };
+    travase(this.root);
+    return data;
+  }
 }
 
 let tree = new BinarySearchTree();
@@ -104,7 +115,7 @@ tree.insert(15);
 tree.insert(3);
 tree.insert(8);
 tree.insert(20);
-console.log(tree.DFSPostOrder());
+console.log(tree.DFSInOrder());
 // console.log('tree', tree.contains(10));
 // console.log('tree', tree.contains(16));
 // console.log(tree.root);
